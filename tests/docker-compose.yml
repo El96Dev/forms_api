@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  forms_tests:
+    build:
+      context: .
+    command: >
+      sh -c "pytest tests.py"
+    networks:
+      - forms_shared_network 
+
+networks:
+  forms_shared_network:
+    external: true

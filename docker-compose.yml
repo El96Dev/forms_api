@@ -17,6 +17,8 @@ services:
       timeout: 5s
       retries: 3
       start_period: 10s
+    networks:
+      - forms_shared_network 
 
   fastapi:
     build:
@@ -31,6 +33,12 @@ services:
         condition: service_healthy
     environment:
       MONGO_URI: "mongodb://root:forms@mongo:27017"
+    networks:
+      - forms_shared_network 
+
+networks:
+  forms_shared_network:
+    external: true
 
 volumes:
   mongo-data:

@@ -9,7 +9,7 @@ def test_nonexistent_form():
         "email": "example@gmail.com",
         "phone": "+7 909 900 20 20"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "country": "text", 
@@ -29,7 +29,7 @@ def test_order_form():
         "order_date": "01.01.2024", 
         "notes": "Some notes"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == "Order form"
 
@@ -41,7 +41,7 @@ def test_order_form_incorrect_phone():
         "order_date": "01.01.2024", 
         "notes": "Some notes"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text", 
@@ -59,7 +59,7 @@ def test_order_form_incorrect_email():
         "order_date": "01.01.2024", 
         "notes": "Some notes"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text", 
@@ -77,7 +77,7 @@ def test_order_form_incorrect_date():
         "order_date": "15 15 2024", 
         "notes": "Some notes"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text", 
@@ -95,7 +95,7 @@ def test_order_form_incorrect_fieldnames():
         "orderdate": "11.12.2024", 
         "notes": "Some notes"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text", 
@@ -112,7 +112,7 @@ def test_order_form_missing_fields():
         "order_date": "01.01.2024", 
         "notes": "Some notes"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text", 
@@ -131,7 +131,7 @@ def test_employee_form():
         "employee_email": "example@gmail.com",
         "employee_phone": "+7 909 100 20 30"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == "Employee form"
 
@@ -143,7 +143,7 @@ def test_employee_form_incorrect_phone():
         "employee_email": "example@gmail.com",
         "employee_phone": "7 909 100 20 30"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text",
@@ -161,7 +161,7 @@ def test_employee_form_incorrect_email():
         "employee_email": "examplegmail.com",
         "employee_phone": "+7 909 100 20 30"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text",
@@ -179,7 +179,7 @@ def test_employee_form_incorrect_fieldnames():
         "email": "example@gmail.com",
         "employee_phone": "+7 909 100 20 30"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text",
@@ -195,7 +195,7 @@ def test_employee_form_missing_fields():
         "lastname": "text",
         "employee_email": "example@gmail.com",
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text",
@@ -212,7 +212,7 @@ def test_store_form():
         "store_phone": "+7 100 300 40 50",
         "store_email": "example@gmail.com"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == "Store form"
 
@@ -223,7 +223,7 @@ def test_store_form_incorrect_phone():
         "store_phone": "+7100 30040 50",
         "store_email": "example@gmail.com"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text",
@@ -239,7 +239,7 @@ def test_store_form_incorrect_email():
         "store_phone": "+7 100 300 40 50",
         "store_email": "examplegmail.com"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text",
@@ -252,7 +252,7 @@ def test_store_form_missing_fields():
     body = {
         "store_phone": "+7 100 300 40 50",
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "store_phone": "phone",
@@ -265,7 +265,7 @@ def test_store_form_incorrect_fieldnames():
         "phone": "+7 100 300 40 50",
         "email": "example@gmail.com"
     }
-    response = requests.post("http://0.0.0.0:8000/get_form", json=body)
+    response = requests.post("http://fastapi:8000/get_form", json=body)
     assert response.status_code == 200
     assert response.json() == {
         "name": "text",
