@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:4.4
+    container_name: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: forms
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: ["CMD", "mongo", "--eval", "db.adminCommand('ping')", "--username", "root", "--password", "forms"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  fastapi:
+    build:
+      context: .
+    container_name: fastapi
+    ports:
+      - "8000:8000"
+    command: >
+      sh -c "python3 main.py"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      MONGO_URI: "mongodb://root:forms@mongo:27017"
+
+volumes:
+  mongo-data:
